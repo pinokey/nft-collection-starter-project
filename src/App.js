@@ -111,6 +111,13 @@ const App = () => {
       );
       console.log("Connected", accounts[0]);
       setCurrentAccount(accounts[0]);
+      let chainId = await ethereum.request({ method: "eth_chainId" });
+      console.log("Connected to chain " + chainId);
+      // 0x4 は　Rinkeby の ID です。
+      const rinkebyChainId = "0x4";
+      if (chainId !== rinkebyChainId) {
+        alert("You are not connected to the Rinkeby Test Network!");
+      } 
       setupEventListener();
     } catch (error) {
       console.log(error);
